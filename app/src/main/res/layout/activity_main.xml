@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
+    <TextView
+        android:fontFamily="@font/dongdong"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="3줄 일기"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/cardview_dark_background"
+        android:layout_weight="0.5"
+        android:gravity="center"/>
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <Button
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
+            android:textSize="20dp"
+            android:backgroundTint="#ccfff8"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text=" 일기 쓰기 "
+            android:layout_margin="20dp"/>
+
+        <Button
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
+            android:backgroundTint="#adfff4"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="임시저장된\n일기 보기"
+            android:layout_margin="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <Button
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
+            android:backgroundTint="#8ffff0"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="저장된\n장소 보기"/>
+
+        <Button
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
+            android:backgroundTint="#78ffed"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="저장된\n일기 보기" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <Button
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
+            android:backgroundTint="#33ffe4"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="설정"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>

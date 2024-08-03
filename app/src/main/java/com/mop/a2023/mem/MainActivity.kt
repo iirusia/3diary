@@ -33,14 +33,14 @@ class MainActivity : AppCompatActivity() {
             templateRadioGroup.removeAllViews()
             when (checkedId) {
                 R.id.radioLandscape -> {
-                    addTemplateRadioButton(templateRadioGroup, R.drawable.background, 1)
-                    addTemplateRadioButton(templateRadioGroup, R.drawable.background, 2)
-                    addTemplateRadioButton(templateRadioGroup, R.drawable.background, 3)
+                    addTemplateRadioButton(templateRadioGroup, R.drawable.landscape_1, 1)
+                    addTemplateRadioButton(templateRadioGroup, R.drawable.landscape_2, 2)
+                    addTemplateRadioButton(templateRadioGroup, R.drawable.total, 3)
                 }
                 R.id.radioPortrait -> {
-                    addTemplateRadioButton(templateRadioGroup, R.drawable.background, 4)
-                    addTemplateRadioButton(templateRadioGroup, R.drawable.background, 5)
-                    addTemplateRadioButton(templateRadioGroup, R.drawable.background, 6)
+                    addTemplateRadioButton(templateRadioGroup, R.drawable.portrait_1, 4)
+                    addTemplateRadioButton(templateRadioGroup, R.drawable.portrait_2, 5)
+                    addTemplateRadioButton(templateRadioGroup, R.drawable.total, 6)
                 }
             }
         }

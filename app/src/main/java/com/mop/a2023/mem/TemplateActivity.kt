@@ -1,4 +1,3 @@
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
@@ -10,13 +9,8 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.mop.a2023.mem.R
-import java.io.IOException
 
 class TemplateActivity : AppCompatActivity() {
-
-    private lateinit var imageView: ImageView
-    private val REQUEST_IMAGE_CAPTURE = 1
-    private val REQUEST_IMAGE_SELECT = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,57 +30,45 @@ class TemplateActivity : AppCompatActivity() {
             else -> setContentView(R.layout.template1)
         }
 
-        imageView = findViewById(R.id.imageView)
         val selectImageButton: Button = findViewById(R.id.selectImageButton)
+        val imageView: ImageView = findViewById(R.id.imageView)
 
         selectImageButton.setOnClickListener {
-            showImageSourceDialog()
-        }
-    }
-
-    private fun showImageSourceDialog() {
-        val options = arrayOf("Take Photo", "Choose from Gallery")
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Select Image Source")
-        builder.setItems(options) { dialog, which ->
-            when (which) {
-                0 -> takePhotoFromCamera()
-                1 -> choosePhotoFromGallery()
+            val options = arrayOf("Camera", "Gallery")
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Select Image From")
+            builder.setItems(options) { _, which ->
+                when (which) {
+                    0 -> openCamera()
+                    1 -> openGallery()
+                }
             }
-        }
-        builder.show()
-    }
-
-    private fun takePhotoFromCamera() {
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (takePictureIntent.resolveActivity(packageManager) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            builder.show()
         }
     }
 
-    private fun choosePhotoFromGallery() {
-        val pickPhotoIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(pickPhotoIntent, REQUEST_IMAGE_SELECT)
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, 100)
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, 200)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == RESULT_OK) {
+            val imageView: ImageView = findViewById(R.id.imageView)
             when (requestCode) {
-                REQUEST_IMAGE_CAPTURE -> {
-                    val imageBitmap = data?.extras?.get("data") as Bitmap
-                    imageView.setImageBitmap(imageBitmap)
+                100 -> { // Camera
+                    val photo = data?.extras?.get("data") as? Bitmap
+                    imageView.setImageBitmap(photo)
                 }
-                REQUEST_IMAGE_SELECT -> {
-                    val selectedImageUri: Uri? = data?.data
-                    if (selectedImageUri != null) {
-                        try {
-                            val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImageUri)
-                            imageView.setImageBitmap(bitmap)
-                        } catch (e: IOException) {
-                            e.printStackTrace()
-                        }
-                    }
+                200 -> { // Gallery
+                    val imageUri: Uri? = data?.data
+                    imageView.setImageURI(imageUri)
                 }
             }
         }

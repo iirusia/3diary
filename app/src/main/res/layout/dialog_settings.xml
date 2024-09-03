@@ -5,16 +5,10 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="화면 방향 설정"
-        android:textSize="18sp"
-        android:layout_marginBottom="8dp"/>
-
+    <!-- Orientation radio group -->
     <RadioGroup
         android:id="@+id/orientationRadioGroup"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -22,27 +16,72 @@
             android:id="@+id/radioLandscape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="가로"/>
+            android:text="가로" />
 
         <RadioButton
             android:id="@+id/radioPortrait"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="세로"/>
+            android:text="세로" />
     </RadioGroup>
 
-    <TextView
+    <!-- Template selection group for landscape -->
+    <RadioGroup
+        android:id="@+id/landscapeTemplateRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="템플릿 모양 설정"
-        android:textSize="18sp"
+        android:orientation="vertical"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"/>
+        android:visibility="gone">
 
+        <RadioButton
+            android:id="@+id/radioTemplateLandscape1"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/landscape_1" />
+
+        <RadioButton
+            android:layout_marginTop="18dp"
+            android:id="@+id/radioTemplateLandscape2"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/landscape_2" />
+
+        <RadioButton
+            android:layout_marginTop="18dp"
+            android:id="@+id/radioTemplateLandscape3"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/total" />
+    </RadioGroup>
+
+    <!-- Template selection group for portrait -->
     <RadioGroup
-        android:id="@+id/templateRadioGroup"
-        android:layout_width="match_parent"
+        android:id="@+id/portraitTemplateRadioGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:visibility="gone">
+
+        <RadioButton
+            android:id="@+id/radioTemplatePortrait1"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/portrait_1" />
+
+        <RadioButton
+            android:layout_marginTop="18dp"
+            android:id="@+id/radioTemplatePortrait2"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/portrait_2"/>
+
+        <RadioButton
+            android:layout_marginTop="18dp"
+            android:id="@+id/radioTemplatePortrait3"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:background="@drawable/total" />
     </RadioGroup>
 </LinearLayout>

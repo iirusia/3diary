@@ -6,6 +6,9 @@ plugins {
 android {
     namespace = "com.mop.a2023.mem"
     compileSdk = 34
+    buildFeatures{
+        viewBinding = true
+    }
 
     defaultConfig {
         applicationId = "com.mop.a2023.mem"

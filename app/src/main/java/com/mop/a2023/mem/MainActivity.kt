@@ -1,19 +1,24 @@
 package com.mop.a2023.mem
 
 import TemplateActivity
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.res.Resources
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import com.mop.a2023.mem.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,6 +48,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.radioPortrait -> {
                     portraitTemplateRadioGroup.visibility = View.VISIBLE
                 }
+            }
+        }
+
+        landscapeTemplateRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.radioTemplateLandscape1 -> startTemplateActivity(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, 1)
+                R.id.radioTemplateLandscape2 -> startTemplateActivity(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, 2)
+                R.id.radioTemplateLandscape3 -> startTemplateActivity(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE, 3)
             }
         }
 
@@ -82,8 +95,8 @@ class MainActivity : AppCompatActivity() {
             tag = id
             this.id = View.generateViewId()
             layoutParams = RadioGroup.LayoutParams(
-                10.dpToPx(), // 너비를 조정하여 이미지 크기를 조정
-                10.dpToPx()  // 높이를 조정하여 이미지 크기를 조정
+                50.dpToPx(), // 너비를 조정하여 이미지 크기를 조정
+                50.dpToPx()  // 높이를 조정하여 이미지 크기를 조정
             ).apply {
                 setMargins(8.dpToPx(), 8.dpToPx(), 8.dpToPx(), 8.dpToPx())
             }
@@ -125,9 +138,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startTemplateActivity(orientation: Int, templateNumber: Int) {
+        val layoutResource = when (templateNumber) {
+            1 -> R.layout.template6  // 가로 모드에서 landscape_1 템플릿을 선택한 경우 template1.xml 로 전환
+            2 -> R.layout.template6  // 가로 모드에서 landscape_2 템플릿을 선택한 경우 template2.xml 로 전환
+            3 -> R.layout.template6  // 가로 모드에서 landscape_3 템플릿을 선택한 경우 template3.xml 로 전환
+            4 -> R.layout.template6  // 세로 모드에서 portrait_1 템플릿을 선택한 경우 template1.xml 로 전환
+            5 -> R.layout.template6  // 세로 모드에서 portrait_2 템플릿을 선택한 경우 template2.xml 로 전환
+            else -> R.layout.template6  // 기본 템플릿
+        }
+
         val intent = Intent(this, TemplateActivity::class.java).apply {
             putExtra("ORIENTATION", orientation)
-            putExtra("TEMPLATE_NUMBER", templateNumber)
+            putExtra("LAYOUT_RESOURCE", layoutResource)
         }
         startActivity(intent)
     }

@@ -12,23 +12,19 @@ import com.mop.a2023.mem.R
 
 class TemplateActivity : AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // 전달된 인텐트에서 레이아웃 리소스를 가져옴
+        val layoutResource = intent.getIntExtra("LAYOUT_RESOURCE", R.layout.template1)
         val orientation = intent.getIntExtra("ORIENTATION", ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-        val templateNumber = intent.getIntExtra("TEMPLATE_NUMBER", 1)
 
+        // 화면 방향 설정
         requestedOrientation = orientation
 
-        when (templateNumber) {
-            1 -> setContentView(R.layout.template1)
-            2 -> setContentView(R.layout.template2)
-            3 -> setContentView(R.layout.template3)
-            4 -> setContentView(R.layout.template4)
-            5 -> setContentView(R.layout.template5)
-            6 -> setContentView(R.layout.template6)
-            else -> setContentView(R.layout.template1)
-        }
+        // 선택된 레이아웃 리소스를 설정
+        setContentView(layoutResource)
 
         val selectImageButton: Button = findViewById(R.id.selectImageButton)
         val imageView: ImageView = findViewById(R.id.imageView)
